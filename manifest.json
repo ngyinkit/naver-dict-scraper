@@ -1,0 +1,11 @@
+{
+    "name": "Naver dict vocab scraper",
+    "description": "A web scraper to export vocab from Naver's word lists into flashcard apps (Quizlet / Knowt)",
+    "version": "1.0",
+    "manifest_version": 3,
+    "permissions": ["activeTab", "scripting"],
+    "action": {
+        "default_popup": "popup.html"
+    },
+    "host_permissions": ["https://learn.dict.naver.com/wordbook/*"]
+}
