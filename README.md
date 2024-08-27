@@ -15,9 +15,9 @@ Naver dictionary itself provides no export button for its wordlists. Therefore l
 - If you are trying to scrape Naver's TOPIK wordlists, you will have to add them to a wordbook first
 - After clicking on the export button, do not touch your computer (else the popup will disappear and the output will not be shown)
 - The output will be shown on the popup after the scraping is done
-- This extension is mainly useful for exporting to Quizle/Knowt
+- This extension is mainly useful for exporting to Quizlet/Knowt
 
 ### Note:
-- The separator between word and definition is %
-- The separator between words is @
+- The separator between word and definition is `%`
+- The separator between words is `@`
 - This extension is not customisable
