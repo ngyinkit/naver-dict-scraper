@@ -49,23 +49,22 @@ async function scrape() {
 
             let definitions = wordlist[j].querySelector(".list_mean").children;
             let defn_list = [];
-            // clean up definitions
+            // get definitions
             for (let k = 0; k < definitions.length; k++) {
-                let defn = definitions[k].querySelector(".cont").innerText;
-                // track index of first ascii character
-                let index = -1;
-                for (let l=0; l < defn.length; l++) {
-                    if (defn.charCodeAt(l) < 128) {
-                        index = l;
-                        break;
-                    }
-                }
-                if (index == -1) {
-                    defn_list.push("");
-                } else if (index == 0) {
-                    defn_list.push(defn);
+                let defn = definitions[k].querySelector(".cont");
+                // replace defn with example if first child is example class
+                if (defn.children.length > 0 && defn.children[0].className == "example") {
+                    defn = defn.children[0];
+                    defn_list.push(defn.innerText.trim());
                 } else {
-                    defn_list.push(defn.substring(index+1, defn.length));
+                    // ignore the text btwn <em> and </em> tags if exists
+                    defn = defn.innerHTML;
+                    let index = defn.indexOf("</em>");
+                    if (index != -1) {
+                        defn_list.push(defn.substring(index+5, defn.length).trim());
+                    } else {
+                        defn_list.push(defn.trim());
+                    }
                 }
             }
             // add definitions to result
