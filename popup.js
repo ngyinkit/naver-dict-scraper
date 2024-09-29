@@ -52,20 +52,11 @@ async function scrape() {
             // get definitions
             for (let k = 0; k < definitions.length; k++) {
                 let defn = definitions[k].querySelector(".cont");
-                // replace defn with example if first child is example class
-                if (defn.children.length > 0 && defn.children[0].className == "example") {
-                    defn = defn.children[0];
-                    defn_list.push(defn.innerText.trim());
-                } else {
-                    // ignore the text btwn <em> and </em> tags if exists
-                    defn = defn.innerHTML;
-                    let index = defn.indexOf("</em>");
-                    if (index != -1) {
-                        defn_list.push(defn.substring(index+5, defn.length).trim());
-                    } else {
-                        defn_list.push(defn.trim());
-                    }
+                // delete entire em element if exists
+                if(defn.children.length > 0 && defn.children[0].tagName == "EM") {
+                    defn.removeChild(defn.children[0]);
                 }
+                defn_list.push(defn.innerText)
             }
             // add definitions to result
             if(defn_list.length == 1) {
