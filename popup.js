@@ -75,8 +75,6 @@ async function scrape() {
         }
         document.getElementById("page_area").children[0].children[1].click();
     }
-    // remove last "@"
-    result = result.substring(0, result.length-1);
     return result;
 }
 
