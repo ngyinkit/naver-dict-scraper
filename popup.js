@@ -14,8 +14,7 @@ async function trigger_scrape() {
         await new Promise(r => setTimeout(r, 600));
         let result = await chrome.scripting.executeScript({
             target: {tabId: tabId},
-            function: scrape,
-            args: [i]
+            function: scrape
         });
         final_result += result[0].result;
         chrome.scripting.executeScript({
