@@ -10,6 +10,7 @@ async function trigger_scrape() {
     });
     num_pages = num_pages[0].result;
     let final_result = "";
+    // scrape each page
     for (let i = 1; i <= num_pages; i++) {
         await new Promise(r => setTimeout(r, 600));
         let result = await chrome.scripting.executeScript({
@@ -26,7 +27,7 @@ async function trigger_scrape() {
     document.getElementById("output").innerHTML = `<hr>
     <h3>Output:</h3>
     <button id="copy">Copy to clipboard</button> <span id="copied"></span> <br><br>
-    <textarea id="result" rows="20" cols="50">${final_result}</textarea>`;
+    <textarea disabled id="result" rows="20" cols="50">${final_result}</textarea>`;
     document.getElementById("copy").addEventListener("click", copy);
 }
 
@@ -43,6 +44,7 @@ async function scrape() {
     let result = "";
     let wordlist = document.getElementById("section_word_card").children;
 
+    // for each word
     for (let j = 1; j < wordlist.length; j++) {
         let word = wordlist[j].querySelector(".cont_word").children;
         // add hangul to result
@@ -58,24 +60,22 @@ async function scrape() {
         result += "%";
 
         let definitions = wordlist[j].querySelector(".list_mean").children;
-        let defn_list = [];
+        let defn_len = definitions.length;
         // get definitions
-        for (let k = 0; k < definitions.length; k++) {
+        for (let k = 0; k < defn_len; k++) {
             let defn = definitions[k].querySelector(".cont");
             // delete entire em element if exists
             if(defn.children.length > 0 && defn.children[0].tagName == "EM") {
                 defn.removeChild(defn.children[0]);
             }
-            defn_list.push(defn.innerText)
-        }
-        // add definitions to result
-        if(defn_list.length == 1) {
-            result += defn_list[0] + "@";
-        } else {
-            for (let m = 0; m < defn_list.length; m++) {
-                let count = m+1;
-                result += count + ". " + defn_list[m];
-                if (m < defn_list.length-1) {
+            // add definitions to result
+            if (defn_len==1) {
+                result += defn.innerText + "@";
+            }
+            else{
+                let count = k+1;
+                result += count + ". " + defn.innerText;
+                if (count < defn_len) {
                     result += "\n";
                 } else {
                     result += "@";
