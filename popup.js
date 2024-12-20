@@ -131,7 +131,6 @@ async function trigger_scrape2() {
             args: [i]
         });
     }
-    document.getElementById("output").innerHTML = `<textarea hidden id="result">${final_result}</textarea>`;
     // download csv
     let link = document.createElement("a");
     let file = new Blob([final_result], {type: "text/csv"});
