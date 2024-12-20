@@ -10,7 +10,19 @@
     </head>
     <body>
         <h1>Naver dict vocab scraper</h1>
-        <button id="export">Export</button>
+        <div id="options"style="font-size: larger">
+            <button id="export">Export to Quizlet/Knowt</button><br><br>
+            <b>OR</b><br>
+            export as CSV (choose what to export below):<br>
+            <input disabled checked type="checkbox" id="word">hangul<br>
+            <input disabled checked type="checkbox" id="definition">definition<br>
+            <input type="checkbox" id="hanja"><label for="hanja">hanja</label><br>
+            <input type="checkbox" id="pronunciation"><label for="pronunciation">pronunciation</label><br>
+            <input type="checkbox" id="kr_exp"><label for="kr_exp">korean explanation</label><br>
+            <input type="checkbox" id="en_exp"><label for="en_exp">english explanation</label><br>
+            <input type="checkbox" id="example"><label for="example">example(s)</label><br><br>
+            <button id="export2">Export as CSV</button>
+        </div>
         <div id="output"></div>
     </body>
     <script src="popup.js"></script>
