@@ -72,8 +72,7 @@ async function scrape() {
                 result += defn.innerText + "@";
             }
             else{
-                let count = k+1;
-                result += count + ". " + defn.innerText + "\n";
+                result += (k+1) + ". " + defn.innerText + "\n";
             }
         }
         result = result.replace(/\n$/,"@");
