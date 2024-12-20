@@ -1,7 +1,7 @@
 document.getElementById("export").addEventListener("click", trigger_scrape);
 
 async function trigger_scrape() {
-    document.getElementById("output").innerHTML = `<hr> <p style="font-size: larger">Exporting... please wait and don't touch your computer...</p>`;
+    document.getElementById("output").innerHTML = `<p style="font-size: larger">Exporting... please wait and don't touch your computer...</p>`;
 
     const tabId = await getTabId();
     let num_pages = await chrome.scripting.executeScript({
@@ -24,8 +24,7 @@ async function trigger_scrape() {
             args: [i]
         });
     }
-    document.getElementById("output").innerHTML = `<hr>
-    <h3>Output:</h3>
+    document.getElementById("output").innerHTML = `<h3>Output:</h3>
     <button id="copy">Copy to clipboard</button> <span id="copied"></span> <br><br>
     <textarea disabled id="result" rows="20" cols="50">${final_result}</textarea>`;
     document.getElementById("copy").addEventListener("click", copy);
@@ -74,14 +73,10 @@ async function scrape() {
             }
             else{
                 let count = k+1;
-                result += count + ". " + defn.innerText;
-                if (count < defn_len) {
-                    result += "\n";
-                } else {
-                    result += "@";
-                }
+                result += count + ". " + defn.innerText + "\n";
             }
         }
+        result = result.replace(/\n$/,"@");
     }
     return result;
 }
