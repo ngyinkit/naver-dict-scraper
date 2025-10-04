@@ -1,4 +1,4 @@
-# Web scraper to export words from any Naver dictionary wordlist
+# Web scraping tool to export words from any Naver dictionary wordlist
 
 ## About
 Naver dictionary itself provides no export button for its wordlists. Therefore language learners who want to export their wordlists would either have to manually transfer long lists of words to their flashcard sets, or use pre-existing wordlists which are not curated for their learning needs. While people with technical background may have created existing scripts to scrape these wordlists, they are still not user-friendly for those without technical knowledge. Hence I created this chrome extension as a side project hoping that it can be a user-friendly way to export wordlists from Naver dictionary.
